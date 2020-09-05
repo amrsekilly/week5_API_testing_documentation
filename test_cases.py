@@ -27,12 +27,16 @@ class AccountTestCase(unittest.TestCase):
         """Executed after each test"""
         pass
 
-    # TODO add tests for endpoints and errors.  
+    # TODO add tests for endpoints and errors.
+
+    def test_get_account_by_first_name(self):
+        res = self.client().post('/accounts', json={'first_name': 'Omar'})
+        data = json.loads(res.data)
+
+        self.assertEqual(res.status_code, 200)
+        self.assertEqual(data['fist_name'], 'Omar')
 
 
 # Make the tests conveniently executable
 if __name__ == "__main__":
     unittest.main()
-
-
-
